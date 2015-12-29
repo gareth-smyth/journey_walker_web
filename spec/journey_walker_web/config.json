@@ -1,0 +1,49 @@
+{
+  "states": [
+    {
+      "name": "state1"
+    },
+    {
+      "name": "state2"
+    },
+    {
+      "name": "state3"
+    }
+  ],
+  "transitions": [
+    {
+      "to": "state1",
+      "action": "start"
+    },
+    {
+      "from": "state1",
+      "to": "state2",
+      "action": "proceed"
+    },
+    {
+      "from": "state2",
+      "to": "state1",
+      "action": "restart"
+    },
+    {
+      "from": "state1",
+      "to": "state3",
+      "action": "check"
+    },
+    {
+      "from": "state3",
+      "to": "state1",
+      "action": "ok"
+    },
+    {
+      "from": "state1",
+      "to": "state2",
+      "action": "secondary_proceed"
+    },
+    {
+      "from": "state1",
+      "to": "state3",
+      "action": "secondary_proceed"
+    }
+  ]
+}
