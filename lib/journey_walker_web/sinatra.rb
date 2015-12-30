@@ -5,9 +5,9 @@ module JourneyWalkerWeb
   # This sinatra app can be created with a journey and will automatically use slim templates defined under
   # /templates with the same name as the states in the journey
   class Sinatra < Sinatra::Base
-    def initialize(endpoint, journey)
-      @endpoint = endpoint
-      @journey = journey
+    def initialize(parameters = {})
+      @endpoint = parameters.fetch(:endpoint, false)
+      @journey = parameters.fetch(:journey, false)
       Sinatra.get "/#{@endpoint}" do
         redirect_for(params[:state], params[:action])
       end

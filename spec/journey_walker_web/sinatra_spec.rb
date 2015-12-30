@@ -4,7 +4,7 @@ require_relative '../../lib/journey_walker_web/sinatra'
 describe JourneyWalkerWeb::Sinatra do
   let(:config) { JSON.parse(File.read('spec/journey_walker_web/config.json'), symbolize_names: true) }
   let(:journey) { JourneyWalker::Journey.new(config) }
-  let(:app) { described_class.new('jtest', journey) }
+  let(:app) { described_class.new(endpoint: 'jtest', journey: journey) }
 
   RSpec.configure { |config| config.include RSpecMixin }
 
