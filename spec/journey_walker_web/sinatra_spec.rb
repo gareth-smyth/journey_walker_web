@@ -4,7 +4,11 @@ require_relative '../../lib/journey_walker_web/sinatra'
 describe JourneyWalkerWeb::Sinatra do
   let(:config) { JSON.parse(File.read('spec/journey_walker_web/config.json'), symbolize_names: true) }
   let(:journey) { JourneyWalker::Journey.new(config) }
-  let(:app) { described_class.new(endpoint: 'jtest', journey: journey) }
+  let(:app) do
+    described_class.new(endpoint: 'jtest',
+                        journey: journey,
+                        views_dir: File.join(File.dirname(File.expand_path(__FILE__)), '../views'))
+  end
 
   RSpec.configure { |config| config.include RSpecMixin }
 
@@ -20,5 +24,11 @@ describe JourneyWalkerWeb::Sinatra do
     follow_redirect!
     expect(last_response.status).to be(200)
     expect(last_request.url).to include('state=state2')
+  end
+
+  it 'should load the state one slim for state1' do
+    get 'jtest?state=state1'
+    expect(last_response.status).to be(200)
+    expect(last_response.body).to include('Hello, this is state one.')
   end
 end

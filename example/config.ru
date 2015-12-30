@@ -31,4 +31,6 @@ config = {
   ]
 }
 
-run JourneyWalkerWeb::Sinatra.new(endpoint: 'settings', journey: JourneyWalker::Journey.new(config))
+run JourneyWalkerWeb::Sinatra.new(endpoint: 'settings',
+                                  journey: JourneyWalker::Journey.new(config),
+                                  views_dir: File.join(File.dirname(File.expand_path(__FILE__)), 'views'))

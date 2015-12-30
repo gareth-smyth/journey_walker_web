@@ -1,5 +1,6 @@
 require 'journey_walker'
 require 'sinatra/base'
+require 'slim'
 
 module JourneyWalkerWeb
   # This sinatra app can be created with a journey and will automatically use slim templates defined under
@@ -8,6 +9,7 @@ module JourneyWalkerWeb
     def initialize(parameters = {})
       @endpoint = parameters.fetch(:endpoint, false)
       @journey = parameters.fetch(:journey, false)
+      @views_dir = parameters.fetch(:views_dir, false)
       Sinatra.get "/#{@endpoint}" do
         redirect_for(params[:state], params[:action])
       end
@@ -17,7 +19,7 @@ module JourneyWalkerWeb
     def redirect_for(state, action)
       redirect "/#{@endpoint}?state=#{@journey.start.name}" if state.nil?
       redirect "/#{@endpoint}?state=#{@journey.perform_action(state, action).name}" unless action.nil?
-      "Params:: state:#{state}, action:#{action}"
+      slim state.to_sym, views: @views_dir
     end
   end
 end
