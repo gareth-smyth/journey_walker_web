@@ -8,9 +8,17 @@ describe JourneyWalkerWeb::Sinatra do
 
   RSpec.configure { |config| config.include RSpecMixin }
 
-  it 'should get the initial step at the root endpoint' do
+  it 'should redirect to the initial step at the root endpoint' do
     get 'jtest'
+    follow_redirect!
     expect(last_response.status).to be(200)
-    expect(last_response.body).to include('state1')
+    expect(last_request.url).to include('state=state1')
+  end
+
+  it 'should redirect to the next step when an action is performed' do
+    get 'jtest?state=state1&action=proceed'
+    follow_redirect!
+    expect(last_response.status).to be(200)
+    expect(last_request.url).to include('state=state2')
   end
 end
