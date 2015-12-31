@@ -4,7 +4,8 @@ SimpleCov.start do
 end
 
 require 'rack/test'
-# Module to mixin ract test
+ENV['RACK_ENV'] = 'test'
+# Module to mixin rack test
 module RSpecMixin
   include Rack::Test::Methods
 end

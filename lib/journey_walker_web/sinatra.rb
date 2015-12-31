@@ -19,7 +19,7 @@ module JourneyWalkerWeb
     def redirect_for(state, action)
       redirect "/#{@endpoint}?state=#{@journey.start.name}" if state.nil?
       redirect "/#{@endpoint}?state=#{@journey.perform_action(state, action).name}" unless action.nil?
-      slim state.to_sym, views: @views_dir
+      slim state.to_sym, views: @views_dir, locals: { state_name: state, actions: @journey.allowed_actions(state) }
     end
   end
 end
