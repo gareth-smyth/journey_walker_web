@@ -2,4 +2,4 @@ p
   - puts locals
   - locals[:actions].each do |action|
     p
-      a href="/settings?state=#{locals[:state_name]}&action=#{action}" #{action}
+      a href="/settings?state=#{locals[:state_name]}&action=#{action[:name]}" #{action[:data][:friendly_name]}

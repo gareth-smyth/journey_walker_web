@@ -21,12 +21,34 @@ config = {
     {
       from: 'menu',
       to: 'parental_controls',
-      action: 'parental_controls'
+      action: 'parental_controls',
+      data: {
+        friendly_name: 'Parental Controls'
+      }
     },
     {
       from: 'menu',
       to: 'email_address',
-      action: 'email_address'
+      action: 'email_address',
+      data: {
+        friendly_name: 'Email Address'
+      }
+    },
+    {
+      from: 'parental_controls',
+      to: 'menu',
+      action: 'back',
+      data: {
+        friendly_name: 'Back to Menu'
+      }
+    },
+    {
+      from: 'email_address',
+      to: 'menu',
+      action: 'back',
+      data: {
+        friendly_name: 'Back to Menu'
+      }
     }
   ]
 }
