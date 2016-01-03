@@ -1,4 +1,5 @@
 require_relative '../lib/journey_walker_web/sinatra'
+require_relative 'services/customer_service'
 require 'journey_walker'
 
 config = {
@@ -10,7 +11,28 @@ config = {
       name: 'parental_controls'
     },
     {
-      name: 'email_address'
+      name: 'email_address',
+      data: [
+        {
+          name: 'customer_data',
+          value: {
+            source: 'customer_service',
+            source_method: 'fetch_email'
+          }
+        }
+      ]
+    }
+  ],
+  data_sources: [
+    {
+      type: 'custom',
+      name: 'customer_service',
+      parameters: [
+        {
+          name: 'class_name',
+          value: 'JourneyWalkerWeb::Example1::CustomerService'
+        }
+      ]
     }
   ],
   transitions: [

@@ -31,4 +31,9 @@ describe JourneyWalkerWeb::Sinatra do
     expect(last_response.status).to be(200)
     expect(last_response.body).to include('Hello, this is state one.')
   end
+
+  it 'should have access to step data' do
+    get 'jtest?state=state1'
+    expect(last_response.body).to include('I am some data!')
+  end
 end

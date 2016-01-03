@@ -16,10 +16,13 @@ module JourneyWalkerWeb
       super()
     end
 
-    def redirect_for(state, action)
-      redirect "/#{@endpoint}?state=#{@journey.start[:name]}" if state.nil?
-      redirect "/#{@endpoint}?state=#{@journey.perform_action(state, action)[:name]}" unless action.nil?
-      slim state.to_sym, views: @views_dir, locals: { state_name: state, actions: @journey.allowed_actions(state) }
+    def redirect_for(state_name, action)
+      redirect "/#{@endpoint}?state=#{@journey.start[:name]}" if state_name.nil?
+      redirect "/#{@endpoint}?state=#{@journey.perform_action(state_name, action)[:name]}" unless action.nil?
+      state = @journey.current_state(state_name)
+      slim state_name.to_sym, views: @views_dir, locals: { state_name: state_name,
+                                                           actions: @journey.allowed_actions(state_name),
+                                                           data: state[:data] }
     end
   end
 end

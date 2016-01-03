@@ -1,7 +1,13 @@
 {
   "states": [
     {
-      "name": "state1"
+      "name": "state1",
+      "data": [
+        {
+          "name": "some_data",
+          "value": "I am some data!"
+        }
+      ]
     },
     {
       "name": "state2"
