@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'journey_walker', path: '../journey_walker'
+gem 'journey_walker', git: 'git://github.com/gareth-smyth/journey_walker.git'
 
-# Specify your gem's dependencies in journey_walker_web.gemspec
 gemspec
