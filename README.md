@@ -1,6 +1,9 @@
 # JourneyWalkerWeb
 Utilises the journey_walker gem to create web based journeys
 
+## Status
+See the specs and the example for what is possible - consider it alpha at the minute.
+
 ## Installation
 
 Add this line to your application's Gemfile:
