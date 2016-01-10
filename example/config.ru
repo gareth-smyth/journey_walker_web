@@ -1,5 +1,6 @@
 require_relative '../lib/journey_walker_web/sinatra'
 require_relative 'services/customer_service'
+require_relative 'services/identity_service'
 require 'journey_walker'
 
 config = {
@@ -17,7 +18,16 @@ config = {
           name: 'customer_data',
           value: {
             source: 'customer_service',
-            source_method: 'fetch_email'
+            source_method: 'fetch_email',
+            parameters: [
+              {
+                name: 'user',
+                value: {
+                  source: 'identity_service',
+                  source_method: 'identity'
+                }
+              }
+            ]
           }
         }
       ]
@@ -31,6 +41,16 @@ config = {
         {
           name: 'class_name',
           value: 'JourneyWalkerWeb::Example1::CustomerService'
+        }
+      ]
+    },
+    {
+      type: 'custom',
+      name: 'identity_service',
+      parameters: [
+        {
+          name: 'class_name',
+          value: 'JourneyWalkerWeb::Example1::IdentityService'
         }
       ]
     }
