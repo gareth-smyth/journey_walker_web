@@ -15,7 +15,7 @@ config = {
       name: 'email_address',
       data: [
         {
-          name: 'customer_data',
+          name: 'email',
           value: {
             source: 'customer_service',
             source_method: 'fetch_email',
@@ -91,6 +91,36 @@ config = {
       data: {
         friendly_name: 'Back to Menu'
       }
+    },
+    {
+      from: 'email_address',
+      to: 'menu',
+      action: 'save',
+      data: {
+        friendly_name: 'Save & Return to Menu'
+      },
+      events: [
+        {
+          'source': 'customer_service',
+          'source_method': 'update_email',
+          'parameters': [
+            {
+              'name': 'user',
+              value: {
+                source: 'identity_service',
+                source_method: 'identity'
+              }
+            },
+            {
+              'name': 'email',
+              'value': {
+                'type': 'action_param',
+                'name': 'form_email'
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

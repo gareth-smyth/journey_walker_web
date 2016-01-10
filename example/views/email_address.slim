@@ -1,6 +1,1 @@
-html
-  head
-  body
-    p #{ locals[:state_name] }
-    p #{ locals[:data][:customer_data] }
-    == slim :'partials/actions', locals:{ state_name: locals[:state_name], actions: locals[:actions] }
+input type='text' value='#{locals[:data][:email]}' name='form_email' title='Email Address'

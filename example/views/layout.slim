@@ -1,0 +1,8 @@
+html
+  head
+  body
+    p #{ locals[:state_name] }
+    form method='post'
+      .content
+        == yield
+      == slim :'partials/actions', locals:{ state_name: locals[:state_name], actions: locals[:actions] }
